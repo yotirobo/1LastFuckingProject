@@ -42,13 +42,13 @@ router.post("/register", function (req, res) {
     con.query(sql, (err, result) => {
       if (err) { console.log(err); return; }
       if (result[0]) {
-        res.send(JSON.stringify("This user already exist"))
+        res.send(false)
       }
       else {
         sql = `insert into user (username, password, email, adress) values ('${req.body.username}', '${req.body.password}', '${req.body.email}', '${req.body.address}')`;
         con.query(sql, (err, result) => {
           if (err) { console.log(err); return; }
-          res.send(JSON.stringify(`${req.body.username} registered successfully!`))
+          res.send(true)
         })
       }
     })
