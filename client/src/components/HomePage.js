@@ -41,8 +41,7 @@ function HomePage() {
         let data = await response.json();
         console.log(data);
         if (data) {
-            localStorage.setItem('username', null);
-            localStorage.setItem('username', JSON.stringify(username));
+            localStorage.setItem('userOnline', JSON.stringify(username));
             navigate("/Todo")
         } else {
             navigate('/')

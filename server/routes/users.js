@@ -13,6 +13,10 @@ const con = sql.createConnection({
 
 /* GET users listing. */
 
+router.get('/' ,(req ,res) => {
+  console.log("jjjj", req.query.user);
+})
+
 router.post("/", function (req, res) {
   let sql = `select username,password from user where username = '${req.body.username}'`
   con.query(sql, (err, result) => {
