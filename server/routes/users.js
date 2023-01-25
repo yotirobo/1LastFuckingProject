@@ -16,10 +16,12 @@ const con = sql.createConnection({
 router.post("/", function (req, res) {
   con.connect(err => {
     if (err) throw err;
-    let sql = `select username,password from user where username = ${req.body.username}`
+    
+    let sql = `select username,password from user where username = '${req.body.username}' `
     con.query(sql, (err, result) => {
       if (err) throw err;
       console.log(result);
+      res.status(200).send(result);
     })
   })
   // if (err) throw err;
