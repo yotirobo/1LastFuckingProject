@@ -41,8 +41,8 @@ function HomePage() {
         let data = await response.json();
         console.log(data);
         if (data) {
-            localStorage.setItem('username', null);
             localStorage.setItem('username', JSON.stringify(username));
+            console.log('hello');
             navigate("/Todo")
         } else {
             navigate('/')
@@ -64,10 +64,11 @@ function HomePage() {
             })
         });
         let data = await response.json();
+        console.log(data)
         if (data === true) {
             localStorage.setItem('username', '');
             localStorage.setItem('username', JSON.stringify(username));
-            localStorage
+            console.log('hello')
             navigate("/Todo")
             return;
         } else {
