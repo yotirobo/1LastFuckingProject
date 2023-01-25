@@ -3,7 +3,8 @@ import React from "react";
 function Todo() {
     
     const getTodos = async () =>{
-        await fetch()
+        const respone = await fetch('http://localhost:5000/todos')
+        
     }
 
     return(

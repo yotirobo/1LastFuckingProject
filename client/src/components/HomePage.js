@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 
 
-function Home() {
+function HomePage() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
@@ -30,8 +30,10 @@ function Home() {
         });
         let data = await response.json();
         console.log(data.message);
-        if (data.message === "logged in!"){
+        if (data){
             navigate("/Todo")
+        }else{
+            navigate('/')
         }
     }
 
@@ -46,4 +48,4 @@ function Home() {
     )
 }
 
-export default Home;
+export default HomePage;
