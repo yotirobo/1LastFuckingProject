@@ -19,8 +19,6 @@ router.get('/', (req , res )=> {
     if (err) { console.log(err); return; }
     res.send(result[0])
   })
-
-
 })
 
 router.post("/", function (req, res) {
@@ -58,4 +56,5 @@ router.post("/register", function (req, res) {
     }
   })
 });
+
 module.exports = router;

@@ -1,17 +1,19 @@
 let express = require('express');
-let path = require('path');
 let cookieParser = require('cookie-parser');
-const fs = require('fs');
 let logger = require('morgan');
+let path = require('path');
 const sql = require('mysql');
+const fs = require('fs');
 const bodyParser = require('body-parser');
-
-const cors = require('cors');
-
+let app = express();
 
 const usersRouter = require('./routes/users');
+const todosRouter = require('./routes/todos');
 
-let app = express();
+
+
+
+const cors = require('cors');
 app.use(cors());
 
 const con = sql.createConnection({
@@ -60,6 +62,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/users', usersRouter);
+app.use('/todos', todosRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

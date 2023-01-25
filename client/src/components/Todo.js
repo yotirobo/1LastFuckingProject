@@ -40,13 +40,13 @@ function Todo() {
         <>
             <ul>
                 <li>
-                    <Link to="/todo">todo</Link>
+                    
                 </li>
                 <li>
-                    <Link to="/about">about</Link>
+                    
                 </li>
                 <li>
-                    <Link to="/">LogOut</Link>
+                    
                 </li>
             </ul>
             <button onClick={myTodos}>Get your Todos</button>

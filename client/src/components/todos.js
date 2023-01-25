@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import "../css/Todos.css"
+import { Link } from 'react-router-dom';
+import "../css/todos.css"
 
 
 
 export const Todos = () => {
-    const currentUser  = localStorage.getItem('userOnline');
+    const currentUser = JSON.parse(localStorage.getItem('userOnline'));
     const [todos, setTodos] = useState([])
     const [selected, setSelected] = useState("byId")
 
 
     const getAllTodosOfCurrentUserById = async () => {
-        let data = await fetch(`https://localhost:5000/todos/?userId=${currentUser.id}`)
+        let data = await fetch(`http://localhost:5000/todos?userId=${currentUser.id}`)
         let todos = await data.json();
+        console.log(todos);
         setTodos(todos);
     }
 
@@ -28,14 +30,14 @@ export const Todos = () => {
     }
     const handleCheck = (index) => {
         let checkedArr = [...todos];
-        checkedArr[index].completed = !checkedArr[index].completed;
+        checkedArr[index].is_complete = !checkedArr[index].is_complete;
         setTodos(checkedArr);
     }
     const createTodosList = (list) => {
         switch (selected) {
             case "byId":
                 list.sort((a, b) => {
-                   return a.id - b.id
+                    return a.todo_id - b.todo_id
                 });
                 break;
             case 'byAB':
@@ -46,8 +48,8 @@ export const Todos = () => {
                 break;
             case 'byCompleted':
                 list.sort((a, b) => {
-                    if (a.completed.toString() > b.completed.toString()) return -1;
-                    if (a.completed.toString() < b.completed.toString()) return 1;
+                    if (a.is_complete > b.is_complete) return -1;
+                    if (a.is_complete < b.is_complete) return 1;
                 });
                 break;
             case "random":
@@ -56,29 +58,35 @@ export const Todos = () => {
 
         }
 
-        let mapArray = list.map((obj, index) => <div  key={index} className={obj.completed ? "completed" : 'pContainer'} >
-            <p key={obj.id} className='pCheckBox'> Task number {index + 1}:
-                <input onChange={()=>handleCheck(index)} type="checkbox" name={index} key={obj.id} checked={obj.completed} />  {obj.title} <br />
-
-            </p>
-        </div>
+        let mapArray = list.map((obj, index) =>
+            <div key={index} className={obj.is_complete ? "completed" : 'pContainer'}>
+                <h5 key={obj.id} className='pCheckBox'> Task number {index + 1}: </h5>
+                <p>{obj.title}</p>
+                <input type="checkbox" className='check' name={index} onChange={() => handleCheck(index)} key={obj.todo_id} checked={obj.is_complete} /><br />
+            </div>
         )
         return mapArray;
     }
 
     return (
-        <>
+        <div className='todos-container'>
+            <Link to="/todo">todo</Link>
+            <Link to="/about">about</Link>
+            <Link to="/">LogOut</Link>
             <h1>Todos list:</h1>
-            <label>Sort by:
+            <br />
+            <div className='select-div'>
+                <label>Sort by: </label>
                 <select onChange={handleSelect}>
                     <option value="byId">By Id of task</option>
                     <option value="byCompleted">By completed tasks</option>
                     <option value="byAB">In Alphabetical order</option>
                     <option value="random">Random order</option>
-                </select></label>
+                </select>
+            </div>
             <div className="todosDiv">
                 {createTodosList(todos)}
             </div>
-        </>
+        </div>
     )
 }

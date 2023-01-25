@@ -1,6 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import "../App.css";
+
 
 
 function HomePage() {
@@ -41,10 +43,9 @@ function HomePage() {
         let data = await response.json();
         console.log(data);
         if (data) {
-            localStorage.setItem('userOnline', JSON.stringify(username));
             const respone = await fetch(`http://localhost:5000/users?user=${username}`)
             const data = await respone.json();
-            localStorage.setItem('user_id', data.user_id)
+            localStorage.setItem('userOnline', JSON.stringify({username : username, id : data.user_id}));
             navigate("/Todo")
         } else {
             navigate('/')
@@ -86,7 +87,7 @@ function HomePage() {
 
 
     return (
-        <>
+        <div className='container'>
             <form className='signIn'>
                 <h3>Log In</h3>
                 <input className='w100' onChange={handleChangeUsername} type="text" value={username.value} placeholder="User Name:" />
@@ -116,7 +117,7 @@ function HomePage() {
                 <button className='form-btn dx' onClick={register}> Register </button>
             </form>
 
-        </>
+        </div>
     )
 }
 
