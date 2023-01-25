@@ -4,12 +4,14 @@ let cookieParser = require('cookie-parser');
 const fs = require('fs');
 let logger = require('morgan');
 const sql = require('mysql');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+const cors = require('cors');
+
 
 const usersRouter = require('./routes/users');
 
 let app = express();
-
+app.use(cors());
 
 const con = sql.createConnection({
   host: 'localhost',
