@@ -6,7 +6,6 @@ let logger = require('morgan');
 const sql = require('mysql');
 const bodyParser = require('body-parser')
 
-let indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
 let app = express();
@@ -57,7 +56,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
