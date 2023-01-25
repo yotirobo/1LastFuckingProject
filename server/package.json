@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "node ./bin/www"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -13,6 +13,7 @@
     "jade": "~1.11.0",
     "morgan": "~1.9.1",
     "myql": "^1.0.0",
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "node-mysql": "^0.4.2"
   }
 }
