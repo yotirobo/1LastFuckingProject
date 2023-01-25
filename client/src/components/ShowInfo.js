@@ -1,34 +1,22 @@
 import React, { useContext } from "react";
 
 function ShowInfo() {
-    const [complete , setComplete] = useContext(false)
-
-    const handleChange = async (e) => {
-        e.preventDefault()
-        setComplete(!complete)
-        const response = await fetch('http://localhost:5000/showinfo', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-            is_complete : complete
-            })
-        });
-    }
-
-
+    const [id , setId ] = useContext(null)
+    let userOnline = localStorage.getItem('username')
+    setId(userOnline)
     const myInfo = async () => {
-        const respone = await fetch('http://localhost:5000/todos')
+        const respone = await fetch(`http://localhost:5000/myinfo/:${id}`)
         const data = await respone.json()
         return (
             <ul>
-                {data.map(todo => (
-                    <input type={"checkbox"} onChange={handleChange} key={Math.random()}>{todo.title}</input>
+                {data.map(myInfo => (
+                    <li type={"checkbox"} key={Math.random()}>{myInfo.title}</li>
                 ))}
             </ul>
         );
     }
+
+
 
     return (
         <>

@@ -41,9 +41,12 @@ function HomePage() {
         let data = await response.json();
         console.log(data);
         if (data) {
+            localStorage.setItem('username', null);
+            localStorage.setItem('username', JSON.stringify(username));
             navigate("/Todo")
         } else {
             navigate('/')
+            alert('username or password are incorrect')
         }
     }
     async function register(e) {
@@ -61,10 +64,14 @@ function HomePage() {
             })
         });
         let data = await response.json();
-        console.log(data);
-        if (data) {
+        if (data === true) {
+            localStorage.setItem('username', '');
+            localStorage.setItem('username', JSON.stringify(username));
+            localStorage
             navigate("/Todo")
+            return;
         } else {
+            alert('username already exists')
             navigate('/')
         }
     }
