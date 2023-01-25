@@ -1,0 +1,9 @@
+{
+    "table_name":"admin",
+    "columns" : [
+        "admin_id INT PRIMARY KEY AUTO_INCREMENT",
+        "name VARCHAR(50) NOT NULL",
+        "password VARCHAR(50) NOT NULL",
+        "school_id INT NOT NULL"
+    ]
+}

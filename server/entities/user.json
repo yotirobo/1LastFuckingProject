@@ -1,0 +1,10 @@
+{
+    "table_name":"user",
+    "columns" : [
+        "user_id INT PRIMARY KEY AUTO_INCREMENT",
+        "password VARCHAR(10) NOT NULL",
+        "username VARCHAR(10) NOT NULL",
+        "email VARCHAR(50)",
+        "adress VARCHAR(255) "
+    ]
+}

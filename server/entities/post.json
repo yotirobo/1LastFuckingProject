@@ -1,0 +1,8 @@
+{
+    "table_name":"post",
+    "columns" : [
+        "user_id INT PRIMARY KEY AUTO_INCREMENT",
+        "title VARCHAR(50) NOT NULL",
+        "body VARCHAR(50) NOT NULL"
+    ]
+}

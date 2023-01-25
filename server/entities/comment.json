@@ -1,0 +1,10 @@
+{
+    "table_name":"comment",
+    "columns" : [
+        "comment_id INT PRIMARY KEY AUTO_INCREMENT",
+        "user_id INT NOT NULL",
+        "title VARCHAR(50) NOT NULL",
+        "body VARCHAR(250) NOT NULL" ,
+        "email VARCHAR(50) NOT NULL"
+    ]
+}

@@ -1,0 +1,9 @@
+{
+    "table_name":"todo",
+    "columns" : [
+        "todo_id INT PRIMARY KEY AUTO_INCREMENT",
+        "user_id INT NOT NULL",
+        "title VARCHAR(50) NOT NULL",
+        "is_complete BOOLEAN NOT NULL" 
+    ]
+}
