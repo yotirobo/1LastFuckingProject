@@ -67,7 +67,6 @@ function HomePage() {
         if (data === true) {
             localStorage.setItem('username', '');
             localStorage.setItem('username', JSON.stringify(username));
-            localStorage
             navigate("/Todo")
             return;
         } else {
