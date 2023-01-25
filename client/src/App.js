@@ -7,19 +7,10 @@ import Todo from './components/Todo';
 import ShowInfo from './components/ShowInfo';
 
 function App() {
+
   return (
-    <div className='App'>
-      <ul>
-        <li>
-          <Link to="/todo">todo</Link>
-        </li>
-        <li>
-          {/* <Link to="/about">about</Link> */}
-        </li>
-        <li>
-          <Link to="/">LogOut</Link>
-        </li>
-      </ul>
+    <div className='container'>
+ 
       <Routes>
         <Route exact path="/" element={<HomePage />} />
         <Route exact path="/todo" element={<Todo />} />
