@@ -7,8 +7,9 @@ import Todo from './components/Todo';
 import ShowInfo from './components/ShowInfo';
 
 function App() {
+
   return (
-    <div className='App'>
+    <div className='container'>
       <ul>
         <li>
           <Link to="/todo">todo</Link>
