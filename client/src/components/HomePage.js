@@ -44,7 +44,7 @@ function HomePage() {
             localStorage.setItem('userOnline', JSON.stringify(username));
             const respone = await fetch(`http://localhost:5000/users?user=${username}`)
             const data = await respone.json();
-            console.log(data)
+            localStorage.setItem('user_id', data.user_id)
             navigate("/Todo")
         } else {
             navigate('/')
