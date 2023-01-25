@@ -10,17 +10,7 @@ function App() {
 
   return (
     <div className='container'>
-      <ul>
-        <li>
-          <Link to="/todo">todo</Link>
-        </li>
-        <li>
-          {/* <Link to="/about">about</Link> */}
-        </li>
-        <li>
-          <Link to="/">LogOut</Link>
-        </li>
-      </ul>
+ 
       <Routes>
         <Route exact path="/" element={<HomePage />} />
         <Route exact path="/todo" element={<Todo />} />
