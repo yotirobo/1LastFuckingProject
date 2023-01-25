@@ -41,9 +41,12 @@ function HomePage() {
         let data = await response.json();
         console.log(data);
         if (data) {
+            localStorage.setItem('username', null);
+            localStorage.setItem('username', JSON.stringify(username));
             navigate("/Todo")
         } else {
             navigate('/')
+            alert('username or password are incorrect')
         }
     }
     async function register(e) {
@@ -56,15 +59,19 @@ function HomePage() {
             body: JSON.stringify({
                 username: username,
                 password: password,
-                email : email,
-                address : address
+                email: email,
+                address: address
             })
         });
         let data = await response.json();
-        console.log(data);
-        if (data) {
+        if (data === true) {
+            localStorage.setItem('username', '');
+            localStorage.setItem('username', JSON.stringify(username));
+            localStorage
             navigate("/Todo")
+            return;
         } else {
+            alert('username already exists')
             navigate('/')
         }
     }
@@ -73,21 +80,21 @@ function HomePage() {
 
     return (
         <form>
-        <h1>Log In</h1>
+            <h1>Log In</h1>
             <input onChange={handleChangeUsername} type="text" value={username.value} placeholder="User Name:" />
-            <br/>
+            <br />
             <input onChange={handleChangePassword} type="password" value={password.value} placeholder="Password:" />
-            <br/>
+            <br />
             <button onClick={logInCheck}> Log-in </button>
             <h1>OR Register</h1>
             <input onChange={handleChangeUsername} type="text" value={username.value} required placeholder="User Name:" />
-            <br/>
+            <br />
             <input onChange={handleChangePassword} type="password" value={password.value} required placeholder="Password:" />
-            <br/>
+            <br />
             <input onChange={handleChangeEmail} type="email" value={email.value} required placeholder="Email:" />
-            <br/>
+            <br />
             <input onChange={handleChangeAddress} type="text" value={address.value} required placeholder="Adress:" />
-            <br/>
+            <br />
             <button onClick={register}> Register </button>
         </form>
     )
