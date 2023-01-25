@@ -1,12 +1,13 @@
-import React, { useContext } from "react";
+import React, { useState } from "react";
 import { Link , Route } from "react-router-dom";
 
 function ShowInfo() {
-    const [id, setId] = useContext(null)
-    let userOnline = localStorage.getItem('username')
+    const [id, setId] = useState('');
+    setId(localStorage.getItem('user_id'));
+    let userOnline = localStorage.getItem('username');
     setId(userOnline)
     const myInfo = async () => {
-        const respone = await fetch(`http://localhost:5000/myinfo/:${id}`)
+        const respone = await fetch(`http://localhost:5000/showinfo/${id}`)
         const data = await respone.json()
         return (
             <ul>
@@ -34,7 +35,7 @@ function ShowInfo() {
             </ul>
             <h1>Hello Im your info</h1>
             <p>{myInfo()}</p>
-            
+
         </>
     )
 }
