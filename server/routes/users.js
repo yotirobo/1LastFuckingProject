@@ -33,43 +33,25 @@ router.post("/", function (req, res) {
       }
     })
   })
-  // if (err) throw err;
-  // for (let user of JSON.parse(data)) {
-  //   if (user.username === req.body.username) {
-  //     if (user.password *1 === req.body.password * 1) {
-  //       return res.send(true);
-  //     }
-  //   }
-  // }
-  // res.send(false);
 });
 
 router.post("/register", function (req, res) {
-  fs.readFile("./public/users.json", (err, data) => {
-    let arr = JSON.parse(data);
-    if (err) {
-      console.log(err);
-      return;
-    }
-    for (let user of JSON.parse(data)) {
-      if (user.username === req.body.username) {
-        return res.send(false);
+  con.connect(err => {
+    if (err) { console.log(err); return; }
+    let sql = `select username from user where username = '${req.body.username}'`
+    con.query(sql, (err, result) => {
+      if (err) { console.log(err); return; }
+      if (result[0]) {
+        res.send(JSON.stringify("This user already exist"))
       }
-    }
-    arr.push(req.body);
-    fs.writeFile("./public/users.json", JSON.stringify(arr), (err) => {
-      if (err) {
-        console.log(err);
-        return;
+      else {
+        sql = `insert into user (username, password, email, adress) values ('${req.body.username}', '${req.body.password}', '${req.body.email}', '${req.body.address}')`;
+        con.query(sql, (err, result) => {
+          if (err) { console.log(err); return; }
+          res.send(JSON.stringify(`${req.body.username} registered successfully!`))
+        })
       }
-    });
-    fs.mkdir(`./public/allUsersFiles/${req.body.username}`, (err) => {
-      if (err) {
-        console.log(err);
-        return;
-      }
-    });
-    res.send(true);
-  });
+    })
+  })
 });
 module.exports = router;
