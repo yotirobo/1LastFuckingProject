@@ -20,13 +20,14 @@ const con = sql.createConnection({
 })
 
 con.connect(err => {
-  if (err) console.log(err);
-  fs.readdir(`./entities`, (err, fileNames) => {
-    if (err) console.log(err);
-    fileNames.forEach(fileName => {
-      setUpTable(fileName);
-    });
-  })
+  if (err) throw err;
+  console.log('database connected');
+  // fs.readdir(`./entities`, (err, fileNames) => {
+  //   if (err) console.log(err);
+  //   fileNames.forEach(fileName => {
+  //     setUpTable(fileName);
+  //   });
+  // })
 });
 
 
