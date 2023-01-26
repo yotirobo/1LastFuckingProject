@@ -12,8 +12,14 @@ function HomePage() {
     const [address, setAddress] = useState('');
     const navigate = useNavigate();
 
+
+//     const handleChange = e=>{
+//  how to make it be handleChange${e.taget.type}?
+//     }
+
     const handleChangePassword = e => {
         e.preventDefault();
+        console.log(e.target.type)
         setPassword(e.target.value);
     }
     const handleChangeUsername = e => {
@@ -45,7 +51,7 @@ function HomePage() {
         if (data) {
             const respone = await fetch(`http://localhost:5000/users?user=${username}`)
             const data = await respone.json();
-            localStorage.setItem('userOnline', JSON.stringify({username : username, id : data.user_id}));
+            localStorage.setItem('userOnline', JSON.stringify({username : username, user_id : data.user_id}));
             navigate("/Todo")
         } else {
             navigate('/')
@@ -69,7 +75,7 @@ function HomePage() {
         let data = await response.json();
         console.log(data)
         if (data === true) {
-            localStorage.setItem('userOnline', JSON.stringify(username));
+            localStorage.setItem('userOnline', JSON.stringify({'username': username, 'user_id': data.user_id}));
             const respone = await fetch(`http://localhost:5000/users?user=${username}`)
             const data = await respone.json();
             console.log(data)

@@ -20,6 +20,7 @@ export const Todos = () => {
     useEffect(() => {
         getAllTodosOfCurrentUserById();
     }, [])
+    
     useEffect(() => {
         createTodosList(todos);
     }, [selected]);
