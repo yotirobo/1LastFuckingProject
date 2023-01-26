@@ -11,12 +11,12 @@ export const Todos = () => {
 
 
     const getAllTodosOfCurrentUserById = async () => {
-        let data = await fetch(`http://localhost:5000/todos?userId=${currentUser.id}`)
+        let data = await fetch(`http://localhost:5000/todos?userId=${currentUser.user_id}`)
         let todos = await data.json();
         console.log(todos);
         setTodos(todos);
     }
-
+    
     useEffect(() => {
         getAllTodosOfCurrentUserById();
     }, [])
@@ -73,6 +73,7 @@ export const Todos = () => {
         <div className='todos-container'>
             <Link to="/todo">todo</Link>
             <Link to="/about">about</Link>
+            <Link to="/posts">Posts</Link>
             <Link to="/">LogOut</Link>
             <h1>Todos list:</h1>
             <br />

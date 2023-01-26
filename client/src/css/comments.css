@@ -1,0 +1,11 @@
+.commentContainer{
+    border: 2px solid #D0B8A8;
+}
+
+.comment:hover > .commentContent{
+    display: block;
+}
+
+.commentContent{
+    display: none;
+}

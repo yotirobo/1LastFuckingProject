@@ -9,7 +9,8 @@ let app = express();
 
 const usersRouter = require('./routes/users');
 const todosRouter = require('./routes/todos');
-const infoRouter = require('./routes/info')
+const infoRouter = require('./routes/info');
+const postsRouter = require('./routes/posts');
 
 
 
@@ -64,6 +65,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/users', usersRouter);
 app.use('/todos', todosRouter);
 app.use('/info', infoRouter);
+app.use('/posts', postsRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

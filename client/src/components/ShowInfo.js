@@ -31,17 +31,10 @@ function ShowInfo() {
 
     return (
         <>
-            <ul>
-                <li>
-                    <Link to="/todo">todo</Link>
-                </li>
-                <li>
-                    <Link to="/about">about</Link>
-                </li>
-                <li>
-                    <Link to="/">LogOut</Link>
-                </li>
-            </ul>
+            <Link to="/todo">todo</Link>
+            <Link to="/about">about</Link>
+            <Link to="/posts">Posts</Link>
+            <Link to="/">LogOut</Link>
             <h1>Hello Im your info</h1>
             {draw?.map((item) => {
                 if (item.title === "password") {
