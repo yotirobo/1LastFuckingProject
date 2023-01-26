@@ -74,12 +74,8 @@ function HomePage() {
         });
         let data = await response.json();
         console.log(data)
-        if (data === true) {
-            localStorage.setItem('userOnline', JSON.stringify({'username': username, 'user_id': data.user_id}));
-            const respone = await fetch(`http://localhost:5000/users?user=${username}`)
-            const data = await respone.json();
-            console.log(data)
-            navigate("/Todo")
+        if (data) {
+            window.location.reload()
             return;
         } else {
             alert('There is a problem with one of the fields, Please refill and try again.')
@@ -94,19 +90,7 @@ function HomePage() {
 
     return (
         <div className='container'>
-            <form className='signIn'>
-                <h3>Log In</h3>
-                <input className='w100' onChange={handleChangeUsername} type="text" value={username.value} placeholder="User Name:" />
-                <br />
-                <input className='w100' onChange={handleChangePassword} type="password" value={password.value} placeholder="Password:" />
-                <br />
-                <button className="form-btn sx back" onClick={() => {
-                    document.getElementsByClassName("signUp")[0].className = "signUp active-dx";
-                    document.getElementsByClassName("signIn")[0].className = "signIn inactive-sx";
-                }} type="button">Back</button>
-                <button className='form-btn dx' onClick={logInCheck}> Log-in </button>
-            </form>
-            <form className='signUp'>
+        <form className='signUp'>
                 <h3>Register</h3>
                 <input onChange={handleChangeUsername} type="text" value={username} required placeholder="User Name:" />
                 <br />
@@ -122,6 +106,19 @@ function HomePage() {
                 }} type="button">Log In</button>
                 <button className='form-btn dx' onClick={register}> Register </button>
             </form>
+            <form className='signIn active-dx'>
+                <h3>Log In</h3>
+                <input className='w100' onChange={handleChangeUsername} type="text" value={username.value} placeholder="User Name:" />
+                <br />
+                <input className='w100' onChange={handleChangePassword} type="password" value={password.value} placeholder="Password:" />
+                <br />
+                <button className="form-btn sx back" onClick={() => {
+                    document.getElementsByClassName("signUp")[0].className = "signUp active-dx";
+                    document.getElementsByClassName("signIn")[0].className = "signIn inactive-sx";
+                }} type="button">Register</button>
+                <button className='form-btn dx' onClick={logInCheck}> Log-in </button>
+            </form>
+            
 
         </div>
     )

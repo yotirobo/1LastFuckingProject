@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, Route } from "react-router-dom";
 
 function ShowInfo() {
-    const [id, setId] = useState(localStorage.user_id);
+    const [id, setId] = useState(JSON.parse(localStorage.getItem("userOnline")).user_id);
     const [draw, setDraw] = useState([]);
     const [userData, setUserData] = useState({});
     const [ifData, setIfData] = useState(false)
